@@ -1,0 +1,399 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Shimi Goldshlak Projects</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: one left-aligned column. Each project is a two-part row: what it is on the left,
+   its pipeline drawn as a strip of stages on the right. The strip is the only boxed element. */
+:root {
+  --bg: #F2F5F7;
+  --panel: #E4EBEF;
+  --fg: #13212C;
+  --muted: #4D5E6B;
+  --line: #C9D4DB;
+  --accent: #0A6767;
+  --accent-fg: #FFFFFF;
+  --signal: #A85F00;
+  --stage: #FFFFFF;
+
+  --display: "Bricolage Grotesque", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --s1: 0.5rem; --s2: 0.75rem; --s3: 1rem; --s4: 1.5rem; --s5: 2.5rem; --s6: 4rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E151B; --panel: #17212A; --fg: #E3EAEF; --muted: #96A6B2; --line: #2A3843;
+    --accent: #5CC8BD; --accent-fg: #06201E; --signal: #F0B84A; --stage: #0E151B;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E151B; --panel: #17212A; --fg: #E3EAEF; --muted: #96A6B2; --line: #2A3843;
+  --accent: #5CC8BD; --accent-fg: #06201E; --signal: #F0B84A; --stage: #0E151B;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.wrap {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding-block: var(--s5) var(--s6);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--s6);
+}
+h1, h2, h3, p, ul, ol, dl, dd, table { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.label {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Opening ---------- */
+.intro { display: grid; gap: var(--s5); grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
+.intro-main { display: flex; flex-direction: column; gap: var(--s4); min-width: 0; }
+h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 8vw, 5.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.lede { font-size: 1.1875rem; line-height: 1.5; max-width: 34em; }
+.where { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); font-size: 0.9375rem; color: var(--muted); }
+.where a { font-weight: 500; }
+
+.index { display: flex; flex-direction: column; min-width: 0; border-top: 2px solid var(--fg); }
+.index a {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--s3); align-items: baseline;
+  padding-block: var(--s2);
+  border-bottom: 1px solid var(--line);
+  color: var(--fg); text-decoration: none;
+}
+.index a:hover .index-name { color: var(--accent); }
+.index-name { font-family: var(--display); font-weight: 500; font-size: 1.125rem; }
+.index-kind { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); text-align: right; }
+
+/* ---------- Projects ---------- */
+.projects { display: flex; flex-direction: column; gap: var(--s5); }
+.projects-head { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); align-items: baseline; justify-content: space-between; }
+.legend { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1) var(--s3); font-size: 0.875rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: var(--s1); }
+
+.project {
+  display: grid; gap: var(--s4) var(--s5);
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--line);
+  scroll-margin-top: var(--s4);
+}
+.what, .how { display: flex; flex-direction: column; gap: var(--s3); min-width: 0; }
+.how { gap: var(--s4); }
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(1.875rem, 4.5vw, 2.625rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.what p { max-width: 32em; }
+.links { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); font-weight: 500; font-size: 0.9375rem; }
+
+.pipe-box { background: var(--panel); border-radius: 6px; padding: var(--s3); display: flex; flex-direction: column; gap: var(--s2); }
+.pipe { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1); font-family: var(--mono); font-size: 0.8125rem; line-height: 1.3; }
+.pipe li { display: inline-flex; align-items: center; gap: var(--s1); }
+.pipe li + li::before { content: "\2192"; color: var(--signal); font-weight: 500; }
+.stage, .stage-you {
+  display: inline-block;
+  padding: 0.3em 0.6em;
+  border-radius: 3px;
+  background: var(--stage);
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+.stage-you { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); font-weight: 500; }
+.pipe-note { font-size: 0.8125rem; color: var(--muted); }
+
+.points { display: flex; flex-direction: column; gap: var(--s2); }
+.points li { padding-left: 1.1em; position: relative; }
+.points li::before { content: ""; position: absolute; left: 0; top: 0.68em; width: 0.45em; height: 2px; background: var(--signal); }
+.points strong { font-weight: 600; }
+
+.measured { width: 100%; border-collapse: collapse; font-size: 0.9375rem; }
+.measured caption { text-align: left; padding-bottom: var(--s1); }
+.measured th, .measured td { padding: 0.4rem 0; border-top: 1px solid var(--line); vertical-align: baseline; }
+.measured th { text-align: left; font-weight: 400; padding-right: var(--s3); }
+.measured td { text-align: right; white-space: nowrap; font-family: var(--mono); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+.measured .miss td { color: var(--signal); }
+.table-note { font-size: 0.8125rem; color: var(--muted); }
+
+.stack { font-family: var(--mono); font-size: 0.8125rem; color: var(--muted); line-height: 1.7; }
+
+/* ---------- Common thread ---------- */
+.thread { display: flex; flex-direction: column; gap: var(--s4); padding-top: var(--s5); border-top: 2px solid var(--fg); }
+.thread h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+.thread-grid { display: grid; gap: var(--s4) var(--s5); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.thread-grid h3 { font-family: var(--display); font-weight: 700; font-size: 1.1875rem; line-height: 1.25; margin-bottom: var(--s1); }
+.thread-grid p { font-size: 0.9375rem; }
+
+footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: var(--s1) var(--s4); justify-content: space-between; }
+
+@media (max-width: 52rem) {
+  .intro, .project { grid-template-columns: minmax(0, 1fr); }
+  .thread-grid { grid-template-columns: minmax(0, 1fr); }
+  .wrap { gap: var(--s5); }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="intro">
+    <div class="intro-main">
+      <p class="label">Selected projects, 2026</p>
+      <h1>Shimi Goldshlak</h1>
+      <p class="lede">I build AI agents, automation pipelines and desktop apps. Each one does the repetitive part of a job and hands the decision back to a person.</p>
+      <p class="where">
+        <span>Israel</span>
+        <a href="https://github.com/ShimiG" target="_blank" rel="noopener">github.com/ShimiG</a>
+      </p>
+    </div>
+    <nav class="index" aria-label="Projects on this page">
+      <a href="#is-it-real"><span class="index-name">Is It Real?</span><span class="index-kind">AI and scam detection</span></a>
+      <a href="#music-manager"><span class="index-name">Music Manager</span><span class="index-kind">Desktop app</span></a>
+      <a href="#job-agents"><span class="index-name">Job Agents</span><span class="index-kind">Multi-agent pipeline</span></a>
+      <a href="#linkedin-pipeline"><span class="index-name">LinkedIn post pipeline</span><span class="index-kind">Content automation</span></a>
+      <a href="#readme-autoupdate"><span class="index-name">readme-autoupdate</span><span class="index-kind">Repo maintenance</span></a>
+    </nav>
+  </header>
+
+  <main class="projects">
+    <div class="projects-head">
+      <p class="label">Projects</p>
+      <p class="legend">
+        <span>Each strip shows how the project moves work from input to result.</span>
+        <span><span class="pipe"><span class="stage-you">filled</span></span> a person decides here</span>
+      </p>
+    </div>
+
+    <!-- Is It Real? -->
+    <article class="project" id="is-it-real">
+      <div class="what">
+        <p class="label">Open source · Apache-2.0</p>
+        <h2>Is It Real?</h2>
+        <p>An on-device detector for AI-generated text, images and video, built to help people, especially older adults, spot AI-driven scams. It ships as a Claude plugin and as a standalone browser extension that share one detection core.</p>
+        <p class="links">
+          <a href="https://github.com/ShimiG/is-it-real" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/ShimiG/is-it-real/blob/main/EVAL.md" target="_blank" rel="noopener">Evaluation report</a>
+        </p>
+      </div>
+      <div class="how">
+        <div class="pipe-box">
+          <ol class="pipe">
+            <li><span class="stage">page, message, picture or video</span></li>
+            <li><span class="stage">scam warning signs</span></li>
+            <li><span class="stage">Content Credentials (C2PA)</span></li>
+            <li><span class="stage">metadata and statistics</span></li>
+            <li><span class="stage">picture model, photos only</span></li>
+            <li><span class="stage">one of four outcomes</span></li>
+          </ol>
+          <p class="pipe-note">Outcomes: Made with AI, Likely made with AI, No clear signs, Not checked. It never says "real" or "human".</p>
+        </div>
+        <ul class="points">
+          <li><strong>Algorithms decide.</strong> Provenance, metadata, statistics and signal processing produce the verdict. A language model is used only to explain it.</li>
+          <li><strong>Nothing leaves the computer.</strong> No accounts, no uploads, no tracking. Every check still works with all outside hosts blocked.</li>
+          <li><strong>It refuses to guess.</strong> A second model first decides whether a picture is a plain photo. Drawings, screenshots and memes are marked "not checked".</li>
+        </ul>
+        <table class="measured">
+          <caption class="label">Measured</caption>
+          <tbody>
+            <tr><th scope="row">Scam test messages flagged</th><td>40 of 40</td></tr>
+            <tr><th scope="row">Everyday text messages wrongly flagged</th><td>0 of 4,827</td></tr>
+            <tr><th scope="row">Texts by non-native English writers wrongly flagged</th><td>0 of 266</td></tr>
+            <tr><th scope="row">Non-AI images wrongly flagged</th><td>6 of 1,065</td></tr>
+            <tr class="miss"><th scope="row">Texts from a 2026 model caught</th><td>13 of 100</td></tr>
+            <tr class="miss"><th scope="row">Face-swap videos caught</th><td>0 of 49</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">From the project's evaluation report, engine 0.8.0-m6. The misses are published next to the catches, and every number can be reproduced with one command.</p>
+        <p class="stack">pnpm monorepo · ONNX Runtime · C2PA · MCP server · sharp · ffmpeg · Chrome extension</p>
+      </div>
+    </article>
+
+    <!-- Music Manager -->
+    <article class="project" id="music-manager">
+      <div class="what">
+        <p class="label">Open source · MIT</p>
+        <h2>Music Manager</h2>
+        <p>A desktop music player that puts YouTube, SoundCloud, Audius, Deezer and the music files on your computer in one library. A React interface runs in a Tauri window and talks to a local API that finds the audio, converts it and streams it to the player.</p>
+        <p class="links">
+          <a href="https://github.com/ShimiG/youtube-music" target="_blank" rel="noopener">Repository</a>
+        </p>
+      </div>
+      <div class="how">
+        <div class="pipe-box">
+          <ol class="pipe">
+            <li><span class="stage">React UI in Tauri</span></li>
+            <li><span class="stage">Express API</span></li>
+            <li><span class="stage">one provider per service</span></li>
+            <li><span class="stage">yt-dlp</span></li>
+            <li><span class="stage">ffmpeg to MP3</span></li>
+            <li><span class="stage">stream and disk cache</span></li>
+          </ol>
+          <p class="pipe-note">Playlists and play history live in a local SQLite file.</p>
+        </div>
+        <ul class="points">
+          <li><strong>One shape for every service.</strong> Each source sits behind the same interface and returns the same playlist and track records. Adding a service takes one provider file, one database row and one client entry.</li>
+          <li><strong>A strict matching engine.</strong> Services that offer a catalog but no audio are matched to a YouTube upload first. Only official uploads count, the title and artist must match exactly, and the length must agree within 5 seconds.</li>
+          <li><strong>Real account handling.</strong> Local accounts with JWT, Google OAuth, SoundCloud OAuth 2.1 with PKCE, and service credentials stored encrypted.</li>
+          <li><strong>Ships as one app.</strong> The server is built as a Node single executable and bundled with ffmpeg and yt-dlp. Sync between computers through a Cloudflare Worker is in progress.</li>
+        </ul>
+        <p class="stack">React · Vite · Tauri (Rust) · Node.js 22 · Express 5 · SQLite · yt-dlp · ffmpeg · Jest · Supertest</p>
+      </div>
+    </article>
+
+    <!-- Job Agents -->
+    <article class="project" id="job-agents">
+      <div class="what">
+        <p class="label">Public repository · TypeScript</p>
+        <h2>Job Agents</h2>
+        <p>A job search pipeline built from four AI agents that share one SQLite database, with a local web page that coordinates each run. Scout finds and scores postings, Tailor writes the CV and cover letter, Submitter fills in the forms, and Archiver files the replies.</p>
+        <p class="links">
+          <a href="https://github.com/ShimiG/job-search-agent-wf" target="_blank" rel="noopener">Repository</a>
+        </p>
+      </div>
+      <div class="how">
+        <div class="pipe-box">
+          <ol class="pipe">
+            <li><span class="stage">job boards and alert emails</span></li>
+            <li><span class="stage">Scout</span></li>
+            <li><span class="stage">shortlist</span></li>
+            <li><span class="stage-you">you pick</span></li>
+            <li><span class="stage">Tailor</span></li>
+            <li><span class="stage-you">you approve</span></li>
+            <li><span class="stage">Submitter</span></li>
+            <li><span class="stage">sent</span></li>
+          </ol>
+          <ol class="pipe">
+            <li><span class="stage">replies in your inbox</span></li>
+            <li><span class="stage">Archiver</span></li>
+            <li><span class="stage">filed under each application</span></li>
+          </ol>
+        </div>
+        <ul class="points">
+          <li><strong>Tailored, then fact-checked.</strong> Every highlight in the master CV has an id. The Tailor cites those ids, so each reworded claim is traced back to something the CV already says. It never adds a figure.</li>
+          <li><strong>Mail stays on the machine.</strong> The Archiver reads email with a local model through Ollama. Scoring can run locally too, at no cost.</li>
+          <li><strong>Tested against look-alike forms.</strong> The Submitter runs in headless Chrome against local pages modeled on Greenhouse and Lever, including CAPTCHA, sign-in and emailed security codes.</li>
+          <li><strong>Runs with or without LangGraph.</strong> The same agents run as LangGraph graphs when its server is up, so every run is visible in LangGraph Studio.</li>
+        </ul>
+        <p class="stack">TypeScript · Node.js 22 · LangGraph · Claude API · Ollama · SQLite · headless Chrome · node:test</p>
+      </div>
+    </article>
+
+    <!-- LinkedIn post pipeline -->
+    <article class="project" id="linkedin-pipeline">
+      <div class="what">
+        <p class="label">Public repository · Python</p>
+        <h2>LinkedIn post pipeline</h2>
+        <p>Three times a week, GitHub Actions drafts a LinkedIn post from free sources, checks it against those sources, translates it to Hebrew and opens a GitHub issue for approval. There is no server, no database and no paid service.</p>
+        <p class="links">
+          <a href="https://github.com/ShimiG/linkedin-post-pipeline" target="_blank" rel="noopener">Repository</a>
+        </p>
+      </div>
+      <div class="how">
+        <div class="pipe-box">
+          <ol class="pipe">
+            <li><span class="stage">Sun, Tue, Thu</span></li>
+            <li><span class="stage">Hacker News or Wikipedia</span></li>
+            <li><span class="stage">draft</span></li>
+            <li><span class="stage">guardrail</span></li>
+            <li><span class="stage">Hebrew translation</span></li>
+            <li><span class="stage">image</span></li>
+            <li><span class="stage">GitHub issue</span></li>
+            <li><span class="stage-you">/approve</span></li>
+            <li><span class="stage">LinkedIn</span></li>
+          </ol>
+          <p class="pipe-note">Review happens in issue comments: /approve, /schedule, /rewrite, /image, /reject, /block.</p>
+        </div>
+        <ul class="points">
+          <li><strong>A guardrail before review.</strong> Every number and every outlet named in a draft must appear in its sources. No links, at most three hashtags, and no wording copied from the writing examples.</li>
+          <li><strong>The issues are the record.</strong> What was drafted, which sources were used and what was published all live in GitHub issues. Approval works from the GitHub app on a phone.</li>
+          <li><strong>Built for Hebrew.</strong> Hebrew and English go out as separate posts in their own time slots. Hebrew lines that open with an English word get a right-to-left mark so LinkedIn shows them correctly.</li>
+          <li><strong>Fallbacks throughout.</strong> Groq writes and Gemini takes over when it fails. An AI illustration is only made for safe topics, and a branded card is drawn otherwise.</li>
+        </ul>
+        <p class="stack">Python · GitHub Actions · Groq · Gemini · Cloudflare Workers AI · pytest</p>
+      </div>
+    </article>
+
+    <!-- readme-autoupdate -->
+    <article class="project" id="readme-autoupdate">
+      <div class="what">
+        <p class="label">Private repository · GitHub Actions</p>
+        <h2>readme-autoupdate</h2>
+        <p>A weekly workflow that goes over every repository I own, has Claude Code compare each README with the code, and opens a pull request wherever the README no longer describes the project.</p>
+      </div>
+      <div class="how">
+        <div class="pipe-box">
+          <ol class="pipe">
+            <li><span class="stage">Mondays</span></li>
+            <li><span class="stage">repos pushed in the last 8 days</span></li>
+            <li><span class="stage">Claude Code reads the code</span></li>
+            <li><span class="stage">README edit</span></li>
+            <li><span class="stage">pull request</span></li>
+            <li><span class="stage-you">you merge</span></li>
+          </ol>
+        </div>
+        <ul class="points">
+          <li><strong>Narrow permissions.</strong> Claude can read and search files and edit the one README file. It has no shell, no network tools and no MCP servers, and the step that runs it never holds the repository token.</li>
+          <li><strong>No repeated proposals.</strong> A repository is skipped while its last proposal is still based on the current default branch. Unchanged projects cost nothing.</li>
+        </ul>
+        <p class="stack">GitHub Actions · Claude Code</p>
+      </div>
+    </article>
+  </main>
+
+  <section class="thread" aria-labelledby="thread-title">
+    <h2 id="thread-title">What the projects have in common</h2>
+    <div class="thread-grid">
+      <div>
+        <h3>A review step in the middle</h3>
+        <p>Posts wait in a GitHub issue, applications wait on a review page, README changes arrive as pull requests. The automation prepares the work and a person signs it off.</p>
+      </div>
+      <div>
+        <h3>Limits written down</h3>
+        <p>Is It Real? publishes what it misses next to what it catches. Job Agents and Music Manager each keep a list of known limitations in the README.</p>
+      </div>
+      <div>
+        <h3>Local and free first</h3>
+        <p>SQLite files, on-device models and free tiers. Most of these projects run on one computer or inside GitHub Actions, with no server to keep alive.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Shimi Goldshlak · <a href="https://github.com/ShimiG" target="_blank" rel="noopener">github.com/ShimiG</a></span>
+    <span>Written from the repositories' READMEs, November 2026</span>
+  </footer>
+
+</div>
+
+</body></html>
