@@ -196,7 +196,7 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
     </div>
 
     <!-- Is It Real? -->
-    <article class="project" id="is-it-real">
+    <article class="project" id="is-it-real" data-repo="ShimiG/is-it-real">
       <div class="what">
         <p class="label">Open source · Apache-2.0</p>
         <h2>Is It Real?</h2>
@@ -234,13 +234,13 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
             <tr class="miss"><th scope="row">Face-swap videos caught</th><td>0 of 49</td></tr>
           </tbody>
         </table>
-        <p class="table-note">From the project's evaluation report, engine 0.8.0-m6. The misses are published next to the catches, and every number can be reproduced with one command.</p>
+        <p class="table-note">From the project's evaluation report, engine 0.8.4-m6. The misses are published next to the catches, and every number can be reproduced: one command downloads the public datasets, another prints the report.</p>
         <p class="stack">pnpm monorepo · ONNX Runtime · C2PA · MCP server · sharp · ffmpeg · Chrome extension</p>
       </div>
     </article>
 
     <!-- Music Manager -->
-    <article class="project" id="music-manager">
+    <article class="project" id="music-manager" data-repo="ShimiG/youtube-music">
       <div class="what">
         <p class="label">Open source · MIT</p>
         <h2>Music Manager</h2>
@@ -264,15 +264,15 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
         <ul class="points">
           <li><strong>One shape for every service.</strong> Each source sits behind the same interface and returns the same playlist and track records. Adding a service takes one provider file, one database row and one client entry.</li>
           <li><strong>A strict matching engine.</strong> Services that offer a catalog but no audio are matched to a YouTube upload first. Only official uploads count, the title and artist must match exactly, and the length must agree within 5 seconds.</li>
-          <li><strong>Real account handling.</strong> Local accounts with JWT, Google OAuth, SoundCloud OAuth 2.1 with PKCE, and service credentials stored encrypted.</li>
-          <li><strong>Ships as one app.</strong> The server is built as a Node single executable and bundled with ffmpeg and yt-dlp. Sync between computers through a Cloudflare Worker is in progress.</li>
+          <li><strong>Real account handling.</strong> The one account lives in a Cloudflare Worker with a D1 database on the user's own Cloudflare account, and signing in gets a JWT for that computer's server. Google OAuth, SoundCloud OAuth 2.1 with PKCE, and service credentials stored encrypted.</li>
+          <li><strong>Ships as one app.</strong> The server is built as a Node single executable and bundled with ffmpeg and yt-dlp. Each computer keeps a synced copy of playlists and history, so reads stay local and the app works offline.</li>
         </ul>
-        <p class="stack">React · Vite · Tauri (Rust) · Node.js 22 · Express 5 · SQLite · yt-dlp · ffmpeg · Jest · Supertest</p>
+        <p class="stack">React · Vite · Tauri (Rust) · Node.js 22 · Express 5 · SQLite · Cloudflare Workers · D1 · yt-dlp · ffmpeg · Jest · Supertest</p>
       </div>
     </article>
 
     <!-- Job Agents -->
-    <article class="project" id="job-agents">
+    <article class="project" id="job-agents" data-repo="ShimiG/job-search-agent-wf">
       <div class="what">
         <p class="label">Public repository · TypeScript</p>
         <h2>Job Agents</h2>
@@ -302,15 +302,23 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
         <ul class="points">
           <li><strong>Tailored, then fact-checked.</strong> Every highlight in the master CV has an id. The Tailor cites those ids, so each reworded claim is traced back to something the CV already says. It never adds a figure.</li>
           <li><strong>Mail stays on the machine.</strong> The Archiver reads email with a local model through Ollama. Scoring can run locally too, at no cost.</li>
-          <li><strong>Tested against look-alike forms.</strong> The Submitter runs in headless Chrome against local pages modeled on Greenhouse and Lever, including CAPTCHA, sign-in and emailed security codes.</li>
+          <li><strong>Tested against look-alike forms.</strong> The Submitter runs in headless Chrome against local pages modeled on Greenhouse and Lever, including CAPTCHA, sign-in and emailed security codes. It has completed real Greenhouse applications; other systems were tested only against the look-alikes.</li>
           <li><strong>Runs with or without LangGraph.</strong> The same agents run as LangGraph graphs when its server is up, so every run is visible in LangGraph Studio.</li>
         </ul>
+        <table class="measured">
+          <caption class="label">Measured</caption>
+          <tbody>
+            <tr class="miss"><th scope="row">Invented CV claims caught by the rule checks alone</th><td>5 of 12</td></tr>
+            <tr><th scope="row">Honest rewordings wrongly taken back</th><td>0 of 12</td></tr>
+          </tbody>
+        </table>
+        <p class="table-note">From the project's README: fixed, fictional eval cases run through the Tailor's rule checks, with no model. The samples are small, and the README gives no figure for the fact-checker that runs after the rules.</p>
         <p class="stack">TypeScript · Node.js 22 · LangGraph · Claude API · Ollama · SQLite · headless Chrome · node:test</p>
       </div>
     </article>
 
     <!-- LinkedIn post pipeline -->
-    <article class="project" id="linkedin-pipeline">
+    <article class="project" id="linkedin-pipeline" data-repo="ShimiG/linkedin-post-pipeline">
       <div class="what">
         <p class="label">Public repository · Python</p>
         <h2>LinkedIn post pipeline</h2>
@@ -345,11 +353,14 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
     </article>
 
     <!-- readme-autoupdate -->
-    <article class="project" id="readme-autoupdate">
+    <article class="project" id="readme-autoupdate" data-repo="ShimiG/readme-autoupdate">
       <div class="what">
-        <p class="label">Private repository · GitHub Actions</p>
+        <p class="label">Public repository · Python</p>
         <h2>readme-autoupdate</h2>
-        <p>A weekly workflow that goes over every repository I own, has Claude Code compare each README with the code, and opens a pull request wherever the README no longer describes the project.</p>
+        <p>A weekly workflow that goes over every repository I own, has Claude Code compare each README with the code, and opens a pull request wherever the README no longer describes the project. A second workflow keeps a public portfolio page in step with the same repositories and proposes its changes as a pull request too.</p>
+        <p class="links">
+          <a href="https://github.com/ShimiG/readme-autoupdate" target="_blank" rel="noopener">Repository</a>
+        </p>
       </div>
       <div class="how">
         <div class="pipe-box">
@@ -361,12 +372,21 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
             <li><span class="stage">pull request</span></li>
             <li><span class="stage-you">you merge</span></li>
           </ol>
+          <ol class="pipe">
+            <li><span class="stage">Mondays, after the README check</span></li>
+            <li><span class="stage">READMEs changed since last check</span></li>
+            <li><span class="stage">Claude Code edits the page</span></li>
+            <li><span class="stage">check script</span></li>
+            <li><span class="stage">pull request</span></li>
+            <li><span class="stage-you">you merge</span></li>
+          </ol>
         </div>
         <ul class="points">
           <li><strong>Narrow permissions.</strong> Claude can read and search files and edit the one README file. It has no shell, no network tools and no MCP servers, and the step that runs it never holds the repository token.</li>
           <li><strong>No repeated proposals.</strong> A repository is skipped while its last proposal is still based on the current default branch. Unchanged projects cost nothing.</li>
+          <li><strong>The page edit is checked.</strong> A script rejects it if it touches the design, adds scripts, images or links to other sites, drops a project, changes an entry whose README did not change, or links to a private repository. When no README changed, Claude is not started.</li>
         </ul>
-        <p class="stack">GitHub Actions · Claude Code</p>
+        <p class="stack">GitHub Actions · Claude Code · Python</p>
       </div>
     </article>
   </main>
