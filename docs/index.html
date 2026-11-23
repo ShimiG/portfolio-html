@@ -234,19 +234,19 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
             <tr class="miss"><th scope="row">Face-swap videos caught</th><td>0 of 49</td></tr>
           </tbody>
         </table>
-        <p class="table-note">From the project's evaluation report, engine 0.8.4-m6. The misses are published next to the catches, and every number can be reproduced: one command downloads the public datasets, another prints the report.</p>
+        <p class="table-note">From the project's evaluation report, engine 0.8.6-m6. The misses are published next to the catches, and every number can be reproduced: one command downloads the public datasets, another prints the report.</p>
         <p class="stack">pnpm monorepo · ONNX Runtime · C2PA · MCP server · sharp · ffmpeg · Chrome extension</p>
       </div>
     </article>
 
     <!-- Music Manager -->
-    <article class="project" id="music-manager" data-repo="ShimiG/youtube-music">
+    <article class="project" id="music-manager" data-repo="ShimiG/music-manager">
       <div class="what">
         <p class="label">Open source · MIT</p>
         <h2>Music Manager</h2>
         <p>A desktop music player that puts YouTube, SoundCloud, Audius, Deezer and the music files on your computer in one library. A React interface runs in a Tauri window and talks to a local API that finds the audio, converts it and streams it to the player.</p>
         <p class="links">
-          <a href="https://github.com/ShimiG/youtube-music" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/ShimiG/music-manager" target="_blank" rel="noopener">Repository</a>
         </p>
       </div>
       <div class="how">
@@ -308,8 +308,9 @@ footer { font-size: 0.875rem; color: var(--muted); display: flex; flex-wrap: wra
         <table class="measured">
           <caption class="label">Measured</caption>
           <tbody>
-            <tr class="miss"><th scope="row">Invented CV claims caught by the rule checks alone</th><td>5 of 12</td></tr>
-            <tr><th scope="row">Honest rewordings wrongly taken back</th><td>0 of 12</td></tr>
+            <tr class="miss"><th scope="row">Plain invented CV claims caught by the rule checks alone</th><td>5 of 12</td></tr>
+            <tr class="miss"><th scope="row">Subtle invented CV claims caught by the rule checks alone</th><td>0 of 12</td></tr>
+            <tr><th scope="row">Honest rewordings wrongly taken back</th><td>0 of 24</td></tr>
           </tbody>
         </table>
         <p class="table-note">From the project's README: fixed, fictional eval cases run through the Tailor's rule checks, with no model. The samples are small, and the README gives no figure for the fact-checker that runs after the rules.</p>
