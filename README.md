@@ -18,6 +18,7 @@ Projects covered:
 | `docs/index.html` | The portfolio page. It is a single self-contained HTML file with inline CSS and loads fonts from Google Fonts. |
 | `html/Shimi Goldshlak Projects.html` | Standalone copy of the portfolio page. |
 | `md/Shimi Goldshlak Projects.md` | The same content as Markdown. |
+| `.portfolio-sources.json` | Written by the portfolio auto-update workflow. It records which README version of each project repository the page was last checked against. |
 
 ## Viewing
 
