@@ -1,10 +1,10 @@
 {
   "about": "Written by the portfolio auto-update workflow. It records which README version of each repository the page was last checked against.",
   "projects": {
-    "ShimiG/is-it-real": "872840968bdab7d90705",
-    "ShimiG/job-search-agent-wf": "9b97f501b59d97ffc181",
-    "ShimiG/linkedin-post-pipeline": "bf19123768751c66ac35",
-    "ShimiG/readme-autoupdate": "a7f2384fc97ef2e9d145",
-    "ShimiG/youtube-music": "a94635bf9c5f048f050f"
+    "ShimiG/is-it-real": "47e83eae20ec3b065ce0",
+    "ShimiG/job-search-agent-wf": "d29b6afc07a6e0ad835f",
+    "ShimiG/linkedin-post-pipeline": "fada36f1a81e8581ad27",
+    "ShimiG/music-manager": "610dd79cd68001b8759c",
+    "ShimiG/readme-autoupdate": "417c95f065bf87b22134"
   }
 }
